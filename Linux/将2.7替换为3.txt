@@ -1,0 +1,12 @@
+ （218）  （0） 
+因为Ubuntu自带的Python2.7的版本，有些项目需要用到3.X的版本，所以需要切换。有很多种方法，我就是用一种最笨的方法，有些麻烦，但是很简单
+本人安装Python3.5版本
+
+1	sudo apt-get install python3.5
+
+之后，进行相互切换操作
+
+1	sudo rm /usr/bin/python
+2	sudo ln -s /usr/bin/python3.5 /usr/bin/python
+
+主要就是你需要用哪一个版本，你就把哪一个版本放到python的系统文件夹路径里，之前需要将目前的版本移出即可。

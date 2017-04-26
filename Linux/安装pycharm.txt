@@ -1,0 +1,11 @@
+在Ubuntu上安装PyCharm IDE
+
+在终端中运行以下命令，通过PPA在Ubuntu 16.04中安装最新的PyCharm IDE。可以使用相同的命令在Ubuntu 15.04，Ubuntu 14.04和Ubuntu Derivatives上安装PyCharm：
+
+sudo add-apt-repository ppa:mystic-mirage/pycharm
+sudo apt update
+sudo apt install pycharm
+
+如果您希望从Ubuntu系统卸载和删除PyCharm，请运行以下命令：
+
+sudo apt remove pycharm

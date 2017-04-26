@@ -1,0 +1,100 @@
+#
+# See the guidelines for updating this recipe for new releases:
+# https://github.com/scrapy/scrapy/wiki/Scrapy-release-procedure#conda-packages
+#
+{% set name = "Scrapy" %}
+{% set version = "1.3.3" %}
+{% set hash_type = "sha256" %}
+{% set hash_val = "7a91d3d7b1c05c2b972115b8966572d52b2520360d0c34c81bd6a627672a7849" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  fn: {{ name }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  {{ hash_type }}: {{ hash_val }}
+
+build:
+  script: python setup.py install --single-version-externally-managed --record=record.txt
+  entry_points:
+    - scrapy = scrapy.cmdline:execute
+  number: 0
+
+# The requirements below shall match the requirements from the target package
+# version (check setup.py for changes).
+requirements:
+  build:
+    - python
+    - setuptools
+
+  run:
+    - python
+    - twisted >=13.1.0  # [not win]
+    - twisted >=16.4.0  # [win]
+    - w3lib >=1.15.0
+    - queuelib
+    - lxml
+    - pyopenssl
+    - cssselect >=0.9
+    - six >=1.5.2
+    - parsel >=1.1.0
+    - pydispatcher >=2.0.5
+    - service_identity
+    - pywin32  # [win]
+
+test:
+  imports:
+    - scrapy
+    - scrapy.commands
+    - scrapy.contracts
+    - scrapy.contrib
+    - scrapy.contrib.downloadermiddleware
+    - scrapy.contrib.exporter
+    - scrapy.contrib.linkextractors
+    - scrapy.contrib.loader
+    - scrapy.contrib.pipeline
+    - scrapy.contrib.spidermiddleware
+    - scrapy.contrib.spiders
+    - scrapy.contrib_exp
+    - scrapy.contrib_exp.downloadermiddleware
+    - scrapy.core
+    - scrapy.core.downloader
+    - scrapy.core.downloader.handlers
+    - scrapy.downloadermiddlewares
+    - scrapy.extensions
+    - scrapy.http
+    - scrapy.http.request
+    - scrapy.http.response
+    - scrapy.linkextractors
+    - scrapy.loader
+    - scrapy.pipelines
+    - scrapy.selector
+    - scrapy.settings
+    - scrapy.spidermiddlewares
+    - scrapy.spiders
+    - scrapy.utils
+    - scrapy.xlib
+    - scrapy.xlib.tx
+
+  commands:
+    # Ideally, we will run tests here but we require to provide the tests
+    # requirements first.
+    - scrapy bench
+
+about:
+  home: https://scrapy.org/
+  license: BSD 3-Clauses
+  license_file: LICENSE
+  summary: A high-level Python Screen Scraping framework
+  description: |
+    Scrapy is an open source and collaborative framework for extracting the
+    data you need from websites in a fast, simple, yet extensible way.
+  doc_url: https://docs.scrapy.org
+  dev_url: https://github.com/scrapy/scrapy
+
+extra:
+  recipe-maintainers:
+    - rolando
+    - redapple

@@ -1,0 +1,13 @@
+目前最简单的方法是通过ppa安装，打开终端，输入以下命令：
+
+sudo add-apt-repository ppa:webupd8team/sublime-text-3
+
+sudo apt-get update
+
+sudo apt-get install sublime-text-installer
+
+卸载 sublime text 命令：
+
+sudo apt-get remove sublime-text-installer
+
+启动时按下subl(不是1是L)
